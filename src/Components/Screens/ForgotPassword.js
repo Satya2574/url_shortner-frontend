@@ -1,4 +1,3 @@
-import { useHistory } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
@@ -15,7 +14,7 @@ function ForgotPassword() {
     width: "100px",
     height: "100px",
   };
-  const history = useHistory();
+
   const initialValues = {
     email: "",
   };
@@ -70,7 +69,7 @@ function ForgotPassword() {
         >
           <div className='card-body'>
             <h5 className='card-title  text-center'>Forgot Password</h5>
-            <img src={Mail} style={style}></img>
+            <img src={Mail} alt='' style={style}></img>
             {/* <p className={`${error? 'text-success':'text-danger'} small text-center`}>{message}</p> */}
             <Formik
               initialValues={initialValues}

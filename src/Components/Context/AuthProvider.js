@@ -8,7 +8,7 @@ function AuthProvider({ children }) {
   const getLoggedInState = async () => {
     try {
       const token = localStorage.getItem("authToken");
-      if (!token) throw "Login to continue";
+      if (!token) throw new Error("Login to continue");
       const userdata = await axios.get(
         `https://url-backen.herokuapp.com/api/auth/isLoggedIn`,
         {

@@ -1,4 +1,4 @@
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
@@ -16,7 +16,7 @@ function ResetPassword() {
     width: "100px",
     height: "100px",
   };
-  const history = useHistory();
+
   const URLToken = useParams();
   const initialValues = {
     password: "",
@@ -86,7 +86,7 @@ function ResetPassword() {
             <h5 className='card-title  text-center font-heading'>
               Reset Password
             </h5>
-            <img src={Mail} style={style}></img>
+            <img src={Mail} alt='' style={style}></img>
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}

@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { userContext } from "../../Context/AuthProvider";
 
 function ShortnerForm() {
-  const { loggedIn, setLoggedIn, getLoggedInState } = useContext(userContext);
+  const { setLoggedIn } = useContext(userContext);
   const [url, seturl] = useState(undefined);
   const initialValues = {
     longurl: "",
@@ -76,18 +76,7 @@ function ShortnerForm() {
       }
     }
   };
-  const clickHandler = async (shortUrl) => {
-    const token = localStorage.getItem("authToken");
-    try {
-      const result = await axios.get(`${shortUrl}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   return (
     <>
       <ToastContainer
@@ -129,7 +118,7 @@ function ShortnerForm() {
       <>
         {url ? (
           <div className='container bg-white mt-5 p-3'>
-            <a href={url.shortUrl} target='_blank'>
+            <a href={url.shortUrl} target='_blank' rel='noreferrer'>
               {url.shortUrl}
             </a>
           </div>

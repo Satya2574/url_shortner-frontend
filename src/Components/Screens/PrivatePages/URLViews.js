@@ -5,45 +5,47 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { userContext } from "../../Context/AuthProvider";
 import { SpinnerDotted } from "spinners-react";
-function URLViews() {
-  const { loggedIn, setLoggedIn, getLoggedInState } = useContext(userContext);
-  const [urlList, setUrlList] = useState([]);
-  const [flag, setFlag] = useState(true);
-  const getURLs = async () => {
-    const token = localStorage.getItem("authToken");
-    try {
-      const result = await axios.get(
-        `https://url-backen.herokuapp.com/api/private/allurl`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
 
-      setUrlList(result.data.urls);
-    } catch (error) {
-      console.log(error);
-      toast.error("Something wen't wrong", {
-        position: "top-right",
-        autoClose: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      setLoggedIn(false);
-    }
-  };
+function URLViews() {
+  const { setLoggedIn } = useContext(userContext);
+  const [urlList, setUrlList] = useState([]);
+  const [setFlag] = useState(true);
+
   useEffect(() => {
+    const getURLs = async () => {
+      const token = localStorage.getItem("authToken");
+      try {
+        const result = await axios.get(
+          `https://url-backen.herokuapp.com/api/private/allurl`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setUrlList(result.data.urls);
+      } catch (error) {
+        console.log(error);
+        toast.error("Something wen't wrong", {
+          position: "top-right",
+          autoClose: false,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setLoggedIn(false);
+      }
+    };
     getURLs();
     setFlag(false);
     return () => {
       <></>;
     };
-  }, []);
+  }, [setFlag, setLoggedIn]);
   return (
     <div className='container-fluid viewssetting'>
       <ToastContainer

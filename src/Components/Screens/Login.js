@@ -12,7 +12,7 @@ import FormControl from "../Formik/FormControl";
 import { userContext } from "../Context/AuthProvider";
 
 function Login() {
-  const { loggedIn, setLoggedIn, getLoggedInState } = useContext(userContext);
+  const { setLoggedIn } = useContext(userContext);
   const history = useHistory();
   const initialValues = {
     email: "",

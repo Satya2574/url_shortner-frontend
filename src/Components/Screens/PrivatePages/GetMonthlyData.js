@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { userContext } from "../../Context/AuthProvider";
 
 function GetMonthlyData({ Monthly }) {
-  const { loggedIn, setLoggedIn, getLoggedInState } = useContext(userContext);
+  const { setLoggedIn } = useContext(userContext);
   const history = useHistory();
   const yearoptions = [
     { key: "2022", value: 2022 },
